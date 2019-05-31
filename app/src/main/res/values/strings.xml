@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">android_four_major_components</string>
+
+    <!--StartAvtivity-->
+    <string name="anction_start_main">点击开始</string>
+
+    <!--text-->
+    <string name="home_text">HOME</string>
+    <string name="welcome_text">welcome to our wonderful Activity learning tour</string>
+
+    <!--activity toolbar-->
+    <string name="main_toolbar_title">首页</string>
+    <string name="start_tool_bar">启动页</string>
+    <string name="dialog_tool_bar">对话框活动</string>
+
+</resources>

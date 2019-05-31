@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize">
+
+    <!--使用 CollapsingToolbarLayout 后 Toolbar 不能直接设置 title-->
+    <!--<com.google.android.material.appbar.CollapsingToolbarLayout-->
+        <!--android:id="@+id/collapsing_toolbar_layout"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/toolbar_white"/>
+
+    <!--</com.google.android.material.appbar.CollapsingToolbarLayout>-->
+
+</com.google.android.material.appbar.AppBarLayout>
