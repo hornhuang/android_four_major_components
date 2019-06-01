@@ -1,7 +1,6 @@
-package com.entry.activitystudy.activities;
+package com.entry.activitystudy;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
@@ -14,20 +13,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.transition.Transition;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.entry.activitystudy.R;
+import com.entry.activitystudy.activities.BaseActivity;
 import com.entry.activitystudy.fragments.TextFragment;
 import com.entry.activitystudy.service.MyService;
 import com.entry.activitystudy.utils.LogUtils;
-import com.entry.activitystudy.utils.ToastUtils;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {

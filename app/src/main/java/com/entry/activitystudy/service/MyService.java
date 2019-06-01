@@ -10,7 +10,12 @@ import androidx.annotation.Nullable;
 
 import com.entry.activitystudy.utils.LogUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyService extends Service {
+
+    private final String theme = "app_theme";
 
     @Override
     public void onCreate() {
@@ -22,6 +27,12 @@ public class MyService extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         LogUtils.d("MyService-onStart");
+        try {
+            // 固定操作与 活动互动较少
+            iniAppTheme(intent.getStringExtra(theme));
+        }catch (Exception e){
+            LogUtils.d("Theme import Lose!");
+        }
     }
 
     @Override
@@ -51,20 +62,38 @@ public class MyService extends Service {
         LogUtils.d("MyService-onDestroy");
     }
 
-    public interface MyIBinder{
-        void invokeMethodInMyService();
+    private boolean iniAppTheme(String url){
+        // ... do downloads
+        return true;
     }
 
+    // 自定义 Binder 利用其和活动进行沟通
     public class MyBinder extends Binder implements MyIBinder{
-
-        public void stopService(ServiceConnection serviceConnection){
-            unbindService(serviceConnection);
-        }
 
         @Override
         public void invokeMethodInMyService() {
             for(int i =0; i < 20; i ++){
                 LogUtils.d("MyService-service is opening");
+            }
+        }
+
+        public void stopService(ServiceConnection serviceConnection){
+            unbindService(serviceConnection);
+        }
+
+        public List<Object> downLoad(String url){
+            // ...进行下载操作
+            return new ArrayList<>();
+        }
+
+        public boolean changeTheme(String type){
+            // ...进行下载操作
+            try {
+                // do something ...
+                return true;
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
             }
         }
     }

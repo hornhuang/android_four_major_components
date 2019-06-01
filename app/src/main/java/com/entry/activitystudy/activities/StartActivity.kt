@@ -2,6 +2,7 @@ package com.entry.activitystudy.activities
 
 import android.os.Bundle
 import android.view.View
+import com.entry.activitystudy.MainActivity
 import com.entry.activitystudy.R
 import kotlinx.android.synthetic.main.activity_start.*
 
