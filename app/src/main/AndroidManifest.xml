@@ -3,6 +3,8 @@
     package="com.entry.activitystudy">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--广播权限-->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
 
     <application
         android:name=".App"
@@ -34,6 +36,8 @@
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </service>
+        <!--广播接收器-->
+        <service android:name=".service.MyIntentService"/>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.entry.activitystudy.service;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -16,9 +17,12 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 public class ServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private final int MAX_PROGRESS = 100;
+    private int progressStatus = 0;
     private MyConnection connection;
 
     private SimpleDraweeView imageView;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +77,27 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
                     ToastUtils.makeText(ServiceActivity.this, "get_pic");
                 }
                 break;
+
+            case R.id.intent_service:
+                if (connection != null){
+
+                    showDialog();
+                }
+                break;
         }
+    }
+
+    private void showDialog(){
+        progressStatus = 0;
+        progressDialog = new ProgressDialog(ServiceActivity.this);
+        progressDialog.setMax(MAX_PROGRESS);
+
+        progressDialog.setTitle("Service 模拟下载中");
+        progressDialog.setMessage("模拟下载由 IntentService 进行，目前完成：");
+
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setIndeterminate(false);
+        progressDialog.show();
     }
 
     private class MyConnection implements ServiceConnection {
