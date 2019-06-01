@@ -25,6 +25,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void iniToolBar(Toolbar toolbar, String barTitle){
 //        toolbarLayout.setTitleEnabled(true);
 //        toolbarLayout.setTitle(getResources().getString(R.string.main_toolbar_title));
+
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null){
             ActionBar actionBar = getSupportActionBar();
@@ -35,7 +36,6 @@ public class BaseActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             toolBarNavClick(toolbar);
             actionBar.setTitle(barTitle);
-
         }
     }
 

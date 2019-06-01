@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.acctionbaractivitydemo.MainActivity" >
+    <item
+        android:id="@+id/take_pic"
+        android:title="setting"
+        android:icon="@drawable/ic_launcher_background"
+        app:showAsAction="withText|ifRoom"/>
+    <item
+        android:id="@+id/multi_select"
+        android:title="choose"
+        app:showAsAction="withText|ifRoom"/>
+    <item
+        android:id="@+id/theme_color_pick"
+        android:orderInCategory="100"
+        android:title="exit"
+        app:showAsAction="never"/>
+</menu>

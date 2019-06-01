@@ -4,16 +4,27 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.entry.activitystudy.R;
+import com.entry.activitystudy.fragments.TextFragment;
+import com.entry.activitystudy.service.MyService;
 import com.entry.activitystudy.utils.LogUtils;
 import com.entry.activitystudy.utils.ToastUtils;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -23,10 +34,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private long firstClicked = 0;
     private final int ANIMATE_TIME = 750;
+    private String a = "";
+    private MyService.MyBinder myBinder;
+    private ServiceConnection serviceConnection;
 
     private Toolbar toolbar;
     private FloatingActionButton floatingActionButton;
 //    private CollapsingToolbarLayout toolbarLayout;
+    private EditText editText;
+    private Button bind, unbind;
 
     private Handler handler = new Handler(){
         @Override
@@ -38,45 +54,70 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LogUtils.d("onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         iniViews();
+        editText.setText(a);
         iniToolBar(toolbar, getResources().getString(R.string.main_toolbar_title));
+        replaceFragment();
     }
 
     private void iniViews(){
         toolbar = findViewById(R.id.toolbar);
 //        toolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         floatingActionButton = findViewById(R.id.to_dialog_activity);
+        editText = findViewById(R.id.hello_edit);
+        bind = findViewById(R.id.service_bind);
+        unbind = findViewById(R.id.service_unbind);
 
         toolbar.setOnClickListener(this);
         floatingActionButton.setOnClickListener(this);
+        bind.setOnClickListener(this);
+        unbind.setOnClickListener(this);
+    }
+
+    private void replaceFragment(){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transition = manager.beginTransaction();
+        transition.replace(R.id.fragment, new TextFragment()).commit();
     }
 
     @Override
     protected void onStart() {
+        LogUtils.d("onStart");
         super.onStart();
     }
 
     @Override
     protected void onResume() {
+        LogUtils.d("onResume");
         super.onResume();
     }
 
     @Override
     protected void onStop() {
+        LogUtils.d("onStop");
         super.onStop();
     }
 
     @Override
     protected void onPause() {
+        LogUtils.d("onPause");
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
+        LogUtils.d("onDestroy");
         super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        LogUtils.d("onRestart");
+        super.onRestart();
     }
 
     @Override
@@ -92,13 +133,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        DialogActivity.anctionStart(MainActivity.this);
+                        MainActivity.anctionStart(MainActivity.this);
+//                        DialogActivity.anctionStart(MainActivity.this);
+                        a = editText.getText().toString();
                     }
                 }.start();
                 break;
 
             case R.id.toolbar:
-                LogUtils.d("click toolbar");
+                // ...
+                break;
+
+            case R.id.service_bind:
+//                startService(new Intent(this, MyService.class));
+                serviceConnection = new MyServiceConnection();
+                bindService(new Intent(MainActivity.this, MyService.class), serviceConnection,
+                        getApplicationContext().BIND_AUTO_CREATE);
+                break;
+
+            case R.id.service_unbind:
+//                stopService(new Intent(this, MyService.class));
+                unbindService(serviceConnection);
                 break;
         }
     }
@@ -109,58 +164,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         floatingActionButton.animate().rotation(0).setDuration(ANIMATE_TIME);
     }
 
-    // 2
-@Override
-public boolean onKeyUp(int keyCode, KeyEvent event) {
-    if (keyCode == KeyEvent.KEYCODE_BACK){
-        long secondTime = System.currentTimeMillis();
-        if (secondTime - firstClicked > 2000) {
-            LogUtils.d("up");
-            ToastUtils.makeText(MainActivity.this, "在按一次退出");
-            firstClicked = secondTime;
-            return true;
-        } else {
-            Intent intent = new Intent(Intent.ACTION_MAIN);// 退到后台而不结束
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            startActivity(intent);
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        LogUtils.d("onCreateOptionsMenu");
+        getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
-    }else {
-        return super.onKeyUp(keyCode, event);
     }
-}
 
-//    // 双击退出  1
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        LogUtils.d("down");
-//        return true;
-////        if (keyCode == KeyEvent.KEYCODE_BACK){
-//////            moveTaskToBack(true);
-//////            return true;
-////        }
-////        return super.onKeyDown(keyCode, event);
-//    }
-//
-//    // 3
-//    // 双击退回桌面
-//    @Override
-//    public void onBackPressed() {
-////        long secondTime = System.currentTimeMillis();
-////        if (secondTime - firstClicked > 2000) {
-////            LogUtils.d("click" + secondTime + "---" + firstClicked);
-////            ToastUtils.makeText((AppCompatActivity) getApplicationContext(), "在按一次退出");
-////            firstClicked = secondTime;
-////        } else {
-////            Intent intent = new Intent(Intent.ACTION_MAIN);
-////            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////            intent.addCategory(Intent.CATEGORY_HOME);
-////            startActivity(intent);
-////        }
-////            moveTaskToBack(true);
-//        finish();
-//    }
+    class MyServiceConnection implements ServiceConnection {
+
+        //这里的第二个参数IBinder就是Service中的onBind方法返回的
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            LogUtils.d("onServiceConnected");
+            myBinder = (MyService.MyBinder) service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            LogUtils.d("onServiceDisconnected");
+        }
+    }
 
     public static void anctionStart(AppCompatActivity activity){
         Intent intent = new Intent(activity, MainActivity.class);

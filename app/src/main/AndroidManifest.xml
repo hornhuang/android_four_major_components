@@ -19,6 +19,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MainActivity" />
+        //Service 必须要注册
+        <service android:name=".service.MyService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.entry.activitystudy.service.MyService"/>
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

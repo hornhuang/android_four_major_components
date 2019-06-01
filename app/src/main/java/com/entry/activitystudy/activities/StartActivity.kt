@@ -13,7 +13,7 @@ class StartActivity : BaseActivity(), View.OnClickListener {
 
         start_activity_main.setOnClickListener {
             MainActivity.anctionStart(this)
-            finish()
+//            finish()
         }
 
     }
