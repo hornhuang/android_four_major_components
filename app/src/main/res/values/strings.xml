@@ -18,6 +18,7 @@
     <string name="service_bind">bind</string>
     <string name="service_unbind">unbind</string>
     <string name="get_pic_from_bind">通过服务获得图片</string>
+    <string name="intent_service">intentService</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

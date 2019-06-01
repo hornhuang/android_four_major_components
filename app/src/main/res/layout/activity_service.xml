@@ -15,31 +15,44 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/service_bind"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="5sp"
         android:background="@color/colorPrimary"
-        android:text="@string/service_bind"/>
+        android:text="@string/service_bind"
+        android:textColor="@color/toolbar_white"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/service_unbind"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="5sp"
         android:background="@color/colorPrimaryDark"
-        android:text="@string/service_unbind"/>
+        android:text="@string/service_unbind"
+        android:textColor="@color/toolbar_white"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/get_pic"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="5sp"
         android:background="@color/colorAccent"
-        android:text="@string/get_pic_from_bind"/>
+        android:text="@string/get_pic_from_bind"
+        android:textColor="@color/toolbar_white"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/intent_service"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="5sp"
+        android:background="@color/design_default_color_primary"
+        android:text="@string/intent_service"
+        android:textColor="@color/toolbar_white"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
