@@ -2,7 +2,8 @@
     <string name="app_name">四大组件</string>
 
     <!--StartAvtivity-->
-    <string name="anction_start_main">点击开始</string>
+    <string name="action_study_activity">activity 学习</string>
+    <string name="action_study_service">service 学习</string>
 
     <!--text-->
     <string name="home_text">HOME</string>
@@ -16,6 +17,7 @@
     <!--Service-->
     <string name="service_bind">bind</string>
     <string name="service_unbind">unbind</string>
+    <string name="get_pic_from_bind">通过服务获得图片</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

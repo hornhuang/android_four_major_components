@@ -3,6 +3,8 @@ package com.entry.activitystudy.service;
 import android.app.Service;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 
@@ -81,9 +83,10 @@ public class MyService extends Service {
             unbindService(serviceConnection);
         }
 
-        public List<Object> downLoad(String url){
+        public Uri downLoadPic(String url){
             // ...进行下载操作
-            return new ArrayList<>();
+            Uri uri = Uri.parse(url);
+            return uri ;
         }
 
         public boolean changeTheme(String type){

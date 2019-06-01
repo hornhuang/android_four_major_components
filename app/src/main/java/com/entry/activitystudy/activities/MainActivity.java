@@ -1,4 +1,4 @@
-package com.entry.activitystudy;
+package com.entry.activitystudy.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.entry.activitystudy.activities.BaseActivity;
+import com.entry.activitystudy.R;
 import com.entry.activitystudy.fragments.TextFragment;
 import com.entry.activitystudy.service.MyService;
 import com.entry.activitystudy.utils.LogUtils;

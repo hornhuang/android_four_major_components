@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.StartActivity">
+    android:orientation="vertical"
+    tools:context=".StartActivity">
 
     <include layout="@layout/tools_toolbar"/>
 
-    <!--背景-->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/download"/>
-
     <androidx.cardview.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="?actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/colorPrimary"
-        android:layout_marginTop="700dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_margin="5sp"
         app:cardCornerRadius="25dp">
 
         <TextView
-            android:id="@+id/start_activity_main"
+            android:id="@+id/study_activity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:background="@drawable/riple_bac"
             android:clickable="true"
-            android:text="@string/anction_start_main"
+            android:text="@string/action_study_activity"
+            android:textColor="@color/toolbar_white"
             android:textSize="20sp" />
 
     </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:layout_margin="5sp"
+        app:cardCornerRadius="25dp">
+
+        <TextView
+            android:id="@+id/study_service"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/riple_bac"
+            android:clickable="true"
+            android:text="@string/action_study_service"
+            android:textColor="@color/toolbar_white"
+            android:textSize="20sp" />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
