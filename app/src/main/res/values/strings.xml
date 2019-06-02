@@ -4,6 +4,7 @@
     <!--StartAvtivity-->
     <string name="action_study_activity">activity 学习</string>
     <string name="action_study_service">service 学习</string>
+    <string name="action_study_broadcast">broadCast 学习</string>
 
     <!--text-->
     <string name="home_text">HOME</string>

@@ -51,4 +51,25 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:layout_margin="5sp"
+        app:cardCornerRadius="25dp">
+
+        <TextView
+            android:id="@+id/study_broadcast"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/riple_bac"
+            android:clickable="true"
+            android:text="@string/action_study_broadcast"
+            android:textColor="@color/toolbar_white"
+            android:textSize="20sp" />
+
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

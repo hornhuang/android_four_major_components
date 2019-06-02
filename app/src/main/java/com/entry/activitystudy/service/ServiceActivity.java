@@ -1,10 +1,12 @@
 package com.entry.activitystudy.service;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -12,13 +14,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.entry.activitystudy.R;
+import com.entry.activitystudy.broadcast.MyBroadcastReceiver;
+import com.entry.activitystudy.utils.IntentManager;
 import com.entry.activitystudy.utils.ToastUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 public class ServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final int MAX_PROGRESS = 100;
-    private int progressStatus = 0;
     private MyConnection connection;
 
     private SimpleDraweeView imageView;
@@ -37,11 +40,13 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
         Button buttonBind = findViewById(R.id.service_bind);
         Button buttonUnBind = findViewById(R.id.service_unbind);
         Button buttonGetPic = findViewById(R.id.get_pic);
+        Button buttonIntent = findViewById(R.id.intent_service);
 
         imageView.setOnClickListener(this);
         buttonBind.setOnClickListener(this);
         buttonUnBind.setOnClickListener(this);
         buttonGetPic.setOnClickListener(this);
+        buttonIntent.setOnClickListener(this);
     }
 
     public static void actionStart(AppCompatActivity activity){
@@ -59,7 +64,6 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
                             connection, BIND_AUTO_CREATE);
                     ToastUtils.makeText(ServiceActivity.this, "service_bind");
                 }
-
                 break;
 
             case R.id.service_unbind:
@@ -79,16 +83,23 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.intent_service:
-                if (connection != null){
-
-                    showDialog();
-                }
+                showDialog();
+                iniBroadCast();
                 break;
         }
     }
 
+    private void iniBroadCast(){
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(ServiceActivity.this);
+        MyBroadcastReceiver broadcastReceiver = new MyBroadcastReceiver(progressDialog);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(IntentManager.ACTION_TYPE_SERVICE);
+        manager.registerReceiver(broadcastReceiver, intentFilter);
+        Intent intent = new Intent(ServiceActivity.this, MyIntentService.class);
+        startService(intent);
+    }
+
     private void showDialog(){
-        progressStatus = 0;
         progressDialog = new ProgressDialog(ServiceActivity.this);
         progressDialog.setMax(MAX_PROGRESS);
 

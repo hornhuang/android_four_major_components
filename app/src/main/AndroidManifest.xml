@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.entry.activitystudy">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--广播权限-->
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 广播权限 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
     <application
         android:name=".App"
@@ -14,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".service.ServiceActivity"></activity>
+        <activity android:name=".broadcast.BroadCastActivity"></activity>
+        <activity android:name=".service.ServiceActivity" />
         <activity
             android:name=".activities.DialogActivity"
             android:theme="@style/ActivityDialog" />
@@ -36,8 +36,15 @@
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </service>
-        <!--广播接收器-->
-        <service android:name=".service.MyIntentService"/>
+        <!-- 广播接收器 -->
+        <service android:name=".service.MyIntentService" />
+        <receiver android:name=".broadcast.MyBroadcastReceiver">
+            <!--这里自定义一个广播动作-->
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="test"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

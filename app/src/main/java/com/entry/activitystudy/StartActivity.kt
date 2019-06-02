@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.entry.activitystudy.activities.BaseActivity
 import com.entry.activitystudy.activities.MainActivity
+import com.entry.activitystudy.broadcast.BroadCastActivity
 import com.entry.activitystudy.service.ServiceActivity
 import kotlinx.android.synthetic.main.activity_start.*
 
@@ -15,6 +16,7 @@ class StartActivity : BaseActivity(), View.OnClickListener {
 
         study_activity.setOnClickListener(this)
         study_service.setOnClickListener(this)
+        study_broadcast.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -27,6 +29,9 @@ class StartActivity : BaseActivity(), View.OnClickListener {
                 R.id.study_service -> {
                     ServiceActivity.actionStart(this)
                     finish()
+                }
+                R.id.study_broadcast -> {
+                    BroadCastActivity.actionStart(this)
                 }
                 else -> {
                     // ...

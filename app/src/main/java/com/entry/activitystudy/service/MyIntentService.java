@@ -43,6 +43,7 @@ public class MyIntentService extends IntentService {
                 }
             }
             sendIfoToBroadCast("下载完成");
+            Thread.sleep(1000);// 模拟初始化耗时
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -50,14 +51,14 @@ public class MyIntentService extends IntentService {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         sendIfoToBroadCast("服务已结束运行");
+        super.onDestroy();
     }
 
     private void sendIfoToBroadCast(String serviceStatus){
-        Intent intent = new Intent(IntentManager.ACTION_TYPE_SERVICE);
-        intent.putExtra(IntentManager.INTENT_STATUS_SERVICE, serviceStatus);
-        manager.sendBroadcast(intent);
+        Intent intent1 = new Intent(IntentManager.ACTION_TYPE_SERVICE);
+        intent1.putExtra(IntentManager.INTENT_STATUS_SERVICE, serviceStatus);
+        manager.sendBroadcast(intent1);
     }
 
     private void sendIfoToBroadCast(String serviceStatus, int progressStatus){
